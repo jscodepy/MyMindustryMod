@@ -26,7 +26,6 @@ public class MoreFactories extends Mod {
     }
     @Override
     public void loadContent(){
-        DieselOil.load();
         DieselOilGenericCrafter.load();
         DieselSynthesisEngine.load();
         Log.info("Loading some MoreFactories content.");
