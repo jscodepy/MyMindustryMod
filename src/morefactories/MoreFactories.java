@@ -9,7 +9,7 @@ import mindustry.ui.dialogs.*;
 public class MoreFactories extends Mod{
 
     public MoreFactories(){
-        Log.info("Loaded ExampleJavaMod constructor.");
+        Log.info("Loaded MoreFactory constructor.");
         //listen for game load event
         Events.on(ClientLoadEvent.class, e -> {
             //show dialog upon startup
@@ -26,7 +26,7 @@ public class MoreFactories extends Mod{
 
     @Override
     public void loadContent(){
-        Log.info("Loading some morefactories content.");
+        Log.info("Loading some MoreFactories content.");
     }
 
 }
