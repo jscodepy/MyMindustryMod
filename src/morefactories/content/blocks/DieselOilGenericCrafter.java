@@ -19,8 +19,6 @@ public class DieselOilGenericCrafter {
         dieselOilGenericCrafter.requirements(Category.power, ItemStack.with(
                 Items.copper,40, Items.lead,30,Items.titanium,15,Items.metaglass,20
         ));
-        DieselOil.load();
-        dieselOilGenericCrafter.outputLiquid.set(DieselOil.dieselOil,6f); //输出柴油
         dieselOilGenericCrafter.consumePower(120);
         dieselOilGenericCrafter.consumeItem(Items.sporePod,5);
         dieselOilGenericCrafter.consumeLiquid(Liquids.oil,5f);

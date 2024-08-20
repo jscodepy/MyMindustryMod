@@ -9,6 +9,8 @@ import morefactories.content.blocks.DieselOilGenericCrafter;
 import morefactories.content.blocks.DieselSynthesisEngine;
 import morefactories.content.liquids.DieselOil;
 
+import static morefactories.content.blocks.DieselOilGenericCrafter.dieselOilGenericCrafter;
+
 public class MoreFactories extends Mod {
 
     public MoreFactories() {
@@ -26,8 +28,17 @@ public class MoreFactories extends Mod {
     }
     @Override
     public void loadContent(){
-        DieselOilGenericCrafter.load();
-        DieselSynthesisEngine.load();
+        try {
+            DieselOil.load();
+            DieselOilGenericCrafter.load();
+            DieselSynthesisEngine.load();
+            dieselOilGenericCrafter.outputLiquid.set(DieselOil.dieselOil, 6f);
+        } finally {
+            DieselOil.load();
+            DieselOilGenericCrafter.load();
+            DieselOilGenericCrafter.load();
+            Log.warn("The mod has some error... We skip the error so the mod's some action is not active.");
+        }
         Log.info("Loading some MoreFactories content.");
     }
 
