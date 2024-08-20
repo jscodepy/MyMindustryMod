@@ -1,11 +1,11 @@
-package morefactories.blocks;
+package morefactories.content.blocks;
 
 import mindustry.content.Items;
 import mindustry.content.Liquids;
 import mindustry.gen.Sounds;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
-import morefactories.liquids.DieselOil;
+import morefactories.content.liquids.DieselOil;
 
 
 public class DieselOilGenericCrafter {

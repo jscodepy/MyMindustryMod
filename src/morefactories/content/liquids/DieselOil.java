@@ -1,4 +1,4 @@
-package morefactories.liquids;
+package morefactories.content.liquids;
 
 import arc.graphics.Color;
 import mindustry.type.Liquid;
