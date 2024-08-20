@@ -1,29 +1,24 @@
 package morefactories.blocks;
 
 import mindustry.content.Items;
-import mindustry.content.Liquids;
 import mindustry.gen.Sounds;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
-import mindustry.world.blocks.production.GenericCrafter;
+import mindustry.world.blocks.power.PowerGenerator;
 import morefactories.liquids.DieselOil;
 
 public class DieselSynthesisEngine {
-    public static GenericCrafter dieselSynthesisEngine;
-    public static void load(){ //柴油合成机
-        dieselSynthesisEngine = new GenericCrafter("DSE");
+    public static PowerGenerator dieselSynthesisEngine;
+    public static void load() {//柴油发电机
+        dieselSynthesisEngine = new PowerGenerator("dieselSynthesisEngine");
         dieselSynthesisEngine.size = 3;
-        dieselSynthesisEngine.health = 230;
-        dieselSynthesisEngine.hasItems = true;
+        dieselSynthesisEngine.health = 210;
         dieselSynthesisEngine.hasLiquids = true;
-        dieselSynthesisEngine.requirements(Category.power, ItemStack.with(
-                Items.copper,120, Items.lead,150,Items.titanium,200,Items.metaglass,70
-        ));
-        dieselSynthesisEngine.outputLiquid.set(DieselOil.dieselOil,6); //输出柴油
-        dieselSynthesisEngine.consumePower(120);
-        dieselSynthesisEngine.consumeItem(Items.sporePod,5);
-        dieselSynthesisEngine.consumeLiquid(Liquids.oil,5f);
-        dieselSynthesisEngine.ambientSound = Sounds.steam;
-        dieselSynthesisEngine.ambientSoundVolume = 0.7f;
+        dieselSynthesisEngine.requirements(Category.power, ItemStack.with(Items.copper,70, Items.lead,70,Items.metaglass,80,Items.silicon,65));
+        dieselSynthesisEngine.powerProduction = 3f;
+
+        dieselSynthesisEngine.consumeLiquid(DieselOil.dieselOil,5f);
+        dieselSynthesisEngine.ambientSound = Sounds.smelter;
+        dieselSynthesisEngine.ambientSoundVolume = 0.08f;
     }
 }
