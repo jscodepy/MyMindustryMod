@@ -5,13 +5,13 @@ displayName: "更多工厂"
 name: "morefactories-java-mod"
 
 #your name
-author: "You"
+author: "WswDay2022"
 
 #the fully qualified main class of the mod
 main: "morefactories.MoreFactories"
 
 #the mod description as seen in the mod dialog
-description: "A Mindustry Java mod template."
+description: "这是一个模组"
 
 #the mod version
 version: 1.0

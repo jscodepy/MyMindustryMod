@@ -6,11 +6,11 @@ import mindustry.gen.Sounds;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.production.GenericCrafter;
-import morefactories.liquid.DieselOil;
+import morefactories.liquids.DieselOil;
 
 public class DieselSynthesisEngine {
     public static GenericCrafter dieselSynthesisEngine;
-    public static void load(){ //柴油合成机器
+    public static void load(){ //柴油合成机
         dieselSynthesisEngine = new GenericCrafter("DSE");
         dieselSynthesisEngine.size = 3;
         dieselSynthesisEngine.health = 230;
