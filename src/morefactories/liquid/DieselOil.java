@@ -1,6 +1,10 @@
 package morefactories.liquid;
 
 import arc.graphics.Color;
+import mindustry.content.Items;
+import mindustry.content.Liquids;
+import mindustry.content.TechTree;
+import mindustry.type.ItemStack;
 import mindustry.type.Liquid;
 
 public class DieselOil {
