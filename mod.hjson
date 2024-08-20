@@ -1,17 +1,17 @@
 #the mod name as displayed in-game
-displayName: "更多工厂"
+displayName: "[gold]More[gold] [cyan]Factories[cyan]"
 
 #the internal name of your mod
 name: "morefactories-java-mod"
 
 #your name
-author: "WswDay2022"
+author: "[gold]WswDay2022[gold]"
 
 #the fully qualified main class of the mod
 main: "morefactories.MoreFactories"
 
 #the mod description as seen in the mod dialog
-description: "这是一个模组"
+description: "[yellow]这是一个模组...也许是吧？[yellow]\n[cyan]这是我的第一个java模组！[cyan]"
 
 #the mod version
 version: 1.0
