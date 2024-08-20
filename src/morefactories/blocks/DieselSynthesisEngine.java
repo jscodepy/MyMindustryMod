@@ -1,19 +1,12 @@
 package morefactories.blocks;
 
-import arc.graphics.Color;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
-import mindustry.content.TechTree;
 import mindustry.gen.Sounds;
 import mindustry.type.Category;
-import mindustry.type.Item;
 import mindustry.type.ItemStack;
-import mindustry.type.Liquid;
-import mindustry.world.Block;
 import mindustry.world.blocks.production.GenericCrafter;
 import morefactories.liquid.DieselOil;
-
-import javax.swing.*;
 
 public class DieselSynthesisEngine {
     public static GenericCrafter dieselSynthesisEngine;
