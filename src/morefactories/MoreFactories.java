@@ -5,16 +5,11 @@ import arc.util.*;
 import mindustry.game.EventType;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.BaseDialog;
-import mindustry.world.Block;
-import morefactories.content.blocks.DieselOilGenericCrafter;
-import morefactories.content.blocks.DieselSynthesisEngine;
-import morefactories.content.blocks.factories.MoreFactoriesBlock$1;
-import morefactories.content.liquids.DieselOil;
-
-import static morefactories.content.blocks.DieselOilGenericCrafter.dieselOilGenericCrafter;
+import morefactories.content.MoreFactoriesBlocks;
+import morefactories.content.MoreFactoriesItems;
+import morefactories.content.MoreFactoriesLiquids;
 
 public class MoreFactories extends Mod {
-
     public MoreFactories() {
         Log.info("Loaded ExampleJavaMod constructor.");
         Events.on(EventType.ClientLoadEvent.class, e -> {
@@ -29,14 +24,10 @@ public class MoreFactories extends Mod {
         });
     }
     @Override
-    public void loadContent(){
-        //DieselOil.load();
-        //DieselOilGenericCrafter.load();
-        //DieselSynthesisEngine.load();
-        //dieselOilGenericCrafter.outputLiquid.set(DieselOil.dieselOil, 6f);
-        MoreFactoriesBlock$1.load();
-
-
+    public void loadContent() {
+        MoreFactoriesBlocks.load();
+        MoreFactoriesItems.load();
+        MoreFactoriesLiquids.load();
         Log.info("Loading some MoreFactories content.");
     }
 
