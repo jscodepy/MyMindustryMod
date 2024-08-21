@@ -22,8 +22,8 @@ public class MoreFactoriesLiquids {
             this.color = Color.valueOf("cbb86f");
             this.barColor = Color.valueOf("cbb86f");
             this.flammability = 0.9f;
-            this.temperature = 0.6f;
-            this.heatCapacity = 0f;
+            this.temperature = 0.7f;
+            this.heatCapacity = 0.1f;
             this.viscosity = 0.6f;
             this.explosiveness = 0.4f;
         }};
