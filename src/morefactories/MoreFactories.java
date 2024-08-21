@@ -5,8 +5,10 @@ import arc.util.*;
 import mindustry.game.EventType;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.BaseDialog;
+import mindustry.world.Block;
 import morefactories.content.blocks.DieselOilGenericCrafter;
 import morefactories.content.blocks.DieselSynthesisEngine;
+import morefactories.content.blocks.factories.MoreFactoriesBlock$1;
 import morefactories.content.liquids.DieselOil;
 
 import static morefactories.content.blocks.DieselOilGenericCrafter.dieselOilGenericCrafter;
@@ -18,7 +20,7 @@ public class MoreFactories extends Mod {
         Events.on(EventType.ClientLoadEvent.class, e -> {
             //show dialog upon startup
             Time.runTask(10f, () -> {
-                BaseDialog dialog = new BaseDialog("[gold]感谢你游玩我的mod![gold]\n[cyan]By WswDay2022[cyan]\n这是我的第一个[red]java[red]模组,可能会有不计其数的[red]bug[red]\n[green]请谅解qwq[green]");
+                BaseDialog dialog = new BaseDialog("[gold]感谢你游玩我的mod![gold]\n[cyan]By WswDay2022[cyan]\n这是我的第一个[red]java[red]模组,可能会有不计其数的[red]bug[red]\n[green]谢谢配合[green]");
                 dialog.cont.add("behold").row();
                 //mod sprites are prefixed with the mod name (this mod is called 'example-java-mod' in its config)
                 dialog.cont.button("[gold]好了,我知道了[gold]",dialog::hide).size(100f, 100f);
@@ -28,17 +30,13 @@ public class MoreFactories extends Mod {
     }
     @Override
     public void loadContent(){
-        try {
-            DieselOil.load();
-            DieselOilGenericCrafter.load();
-            DieselSynthesisEngine.load();
-            dieselOilGenericCrafter.outputLiquid.set(DieselOil.dieselOil, 6f);
-        } finally {
-            DieselOil.load();
-            DieselOilGenericCrafter.load();
-            DieselOilGenericCrafter.load();
-            Log.warn("The mod has some error... We skip the error so the mod's some action is not active.");
-        }
+        //DieselOil.load();
+        //DieselOilGenericCrafter.load();
+        //DieselSynthesisEngine.load();
+        //dieselOilGenericCrafter.outputLiquid.set(DieselOil.dieselOil, 6f);
+        MoreFactoriesBlock$1.load();
+
+
         Log.info("Loading some MoreFactories content.");
     }
 
