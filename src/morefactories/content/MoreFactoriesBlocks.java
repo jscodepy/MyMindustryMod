@@ -47,6 +47,7 @@ public class MoreFactoriesBlocks {
             this.consumeLiquid(Liquids.water,0.3f);
             this.powerProduction = 2.5f;
             this.generateEffect = Fx.generatespark;
+            this.outputsPower = true;
             this.size = 2;
             this.health = 130;
             this.hasLiquids = true;
@@ -59,9 +60,10 @@ public class MoreFactoriesBlocks {
             this.consumeLiquid(MoreFactoriesLiquids.dieselOil,1.5f);
             this.powerProduction = 8f;
             this.generateEffect = Fx.generatespark;
-            this.size = 3;
+            this.size = 2;
+            this.outputsPower = true;
             this.hasLiquids = true;
-            this.health = 220;
+            this.health = 180;
             this.requirements(Category.power,ItemStack.with(Items.copper,45,Items.lead,45,Items.silicon,30,Items.metaglass,40));
             this.ambientSound = Sounds.smelter;
             this.ambientSoundVolume = 0.08f;
