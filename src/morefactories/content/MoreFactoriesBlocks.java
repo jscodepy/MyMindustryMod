@@ -15,7 +15,7 @@ public class MoreFactoriesBlocks {
     public MoreFactoriesBlocks() {}
     public static void load() {
         largeKiln = new AttributeCrafter("large-kiln") {{ // 大型窑炉
-            this.consumeItems(ItemStack.with(Items.lead,Items.sand)); // 消耗物品
+            this.consumeItems(ItemStack.with(Items.lead,2,Items.sand,2)); // 消耗物品
             this.consumeLiquid(Liquids.water,2.5f); // 消耗液体
             this.consumePower(4f); // 消耗电力
             this.requirements(Category.crafting, ItemStack.with(Items.copper, 130, Items.metaglass, 80, Items.plastanium, 35, Items.silicon, 60, Items.lead, 50));

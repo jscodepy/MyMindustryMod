@@ -1,9 +1,9 @@
 {
   "name": "MoreFactories",
-  "displayName": "BetaMindy",
+  "displayName": "MoreFactories",
   "author": "[yellow]WswDay2022",
   "description": "This mod add more factories.",
-  "subtitle": "Demo of Chaos Itself",
+  "subtitle": "This is a alpha version.",
   "version": "0.1",
   "main": "morefactories.MoreFactories",
   "minGameVersion": "145",
