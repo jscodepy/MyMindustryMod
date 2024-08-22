@@ -56,7 +56,7 @@ public class MoreFactoriesBlocks {
             this.ambientSoundVolume = 0.06f;
             this.liquidCapacity = 10f;
         }};
-        dieselOilAlternator = new ConsumeGenerator("dieselOil-alternator") {{ // 柴油发电机
+        dieselOilAlternator = new ConsumeGenerator("diesel-oil-alternator") {{ // 柴油发电机
             this.consumeLiquid(MoreFactoriesLiquids.dieselOil,1.5f);
             this.powerProduction = 8f;
             this.generateEffect = Fx.generatespark;
@@ -69,7 +69,7 @@ public class MoreFactoriesBlocks {
             this.ambientSoundVolume = 0.08f;
             this.liquidCapacity = 20f;
         }};
-        dieselOilCrafter = new GenericCrafter("dieselOil-crafter") {{ // 柴油混合机
+        dieselOilCrafter = new GenericCrafter("diesel-oil-crafter") {{ // 柴油混合机
             this.consumeItem(Items.sporePod,3);
             this.consumeLiquid(Liquids.oil,3f);
             this.consumePower(1.8f);
@@ -82,7 +82,6 @@ public class MoreFactoriesBlocks {
             this.outputsLiquid = true;
             this.liquidCapacity = 20f;
             this.craftTime = 20f;
-            this.envEnabled = Env.any;
             this.drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(Liquids.oil), new DrawLiquidTile(MoreFactoriesLiquids.dieselOil){{drawLiquidLight = true;}}, new DrawDefault());
             this.outputLiquid = new LiquidStack(MoreFactoriesLiquids.dieselOil,3f);
             this.hasLiquids = this.hasPower = this.hasItems = true;
