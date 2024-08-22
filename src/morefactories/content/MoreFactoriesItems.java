@@ -27,7 +27,7 @@ public class MoreFactoriesItems {
             this.hardness = 2;
         }};
         gold = new Item("gold") {{
-            this.color = Color.valueOf("#f6d82d");
+            this.color = Color.valueOf("#fac462");
             this.explosiveness = 0;
             this.flammability = 0.1f;
             this.radioactivity = 0f;
