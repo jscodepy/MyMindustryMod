@@ -17,6 +17,7 @@ lowPriority	     boolean	    false	    若为true, 钻探优先级最低(如沙�
 public class MoreFactoriesItems {
     public static Item iron;
     public static Item gold;
+    public static Item titaniumAlloy;
     public static void load() {
         iron = new Item("iron") {{
             this.color = Color.valueOf("#eae9e2");
@@ -33,6 +34,13 @@ public class MoreFactoriesItems {
             this.radioactivity = 0f;
             this.charge = 0.1f;
             this.hardness = 2;
+        }};
+        titaniumAlloy = new Item("titanium-alloy") {{
+            this.color = Color.valueOf("b4bacd");
+            this.explosiveness = 0.1f;
+            this.flammability = 0.1f;
+            this.radioactivity = 0;
+            this.charge = 0.2f;
         }};
     }
 }

@@ -1,6 +1,7 @@
 package morefactories.content;
 
 import arc.graphics.Color;
+import mindustry.content.StatusEffects;
 import mindustry.type.Liquid;
 
 /*
@@ -17,6 +18,7 @@ effect	         StatusEffect	StatusEffects.none	单位触碰时获得的效果
 
 public class MoreFactoriesLiquids {
     public static Liquid dieselOil;
+    public static Liquid poisonAgent;
     public static void load() {
         dieselOil = new Liquid("diesel-oil") {{
             this.color = Color.valueOf("cbb86f");
@@ -26,6 +28,17 @@ public class MoreFactoriesLiquids {
             this.heatCapacity = 0.1f;
             this.viscosity = 0.6f;
             this.explosiveness = 0.4f;
+            this.effect = StatusEffects.tarred;
+        }};
+        poisonAgent = new Liquid("poison-agent") {{
+            this.effect = StatusEffects.corroded;
+            this.color = Color.valueOf("6aa85e");
+            this.barColor = Color.valueOf("6aa85e");
+            this.flammability = 0.3f;
+            this.temperature = 0.7f;
+            this.heatCapacity = 0f;
+            this.viscosity = 0.4f;
+            this.explosiveness = 0.1f;
         }};
     }
 }

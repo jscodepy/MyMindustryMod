@@ -9,6 +9,7 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.world.Block;
+import mindustry.world.blocks.distribution.ItemBridge;
 import mindustry.world.blocks.power.ConsumeGenerator;
 import mindustry.world.blocks.power.PowerGenerator;
 import mindustry.world.blocks.production.AttributeCrafter;
@@ -18,12 +19,15 @@ import mindustry.world.draw.*;
 import mindustry.world.meta.Env;
 
 import static mindustry.content.Fx.smeltsmoke;
+import static mindustry.type.ItemStack.with;
 
 public class MoreFactoriesBlocks {
     public static Block largeKiln;
     public static Block waterAlternator;
     public static Block dieselOilAlternator;
     public static Block dieselOilCrafter;
+    //public static Block railway;
+    public static Block largePhaseConveyor;
     public MoreFactoriesBlocks() {}
     public static void load() {
         largeKiln = new GenericCrafter("large-kiln") {{ // 大型窑炉
@@ -85,6 +89,17 @@ public class MoreFactoriesBlocks {
             this.drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(Liquids.oil), new DrawLiquidTile(MoreFactoriesLiquids.dieselOil){{drawLiquidLight = true;}}, new DrawDefault());
             this.outputLiquid = new LiquidStack(MoreFactoriesLiquids.dieselOil,3f);
             this.hasLiquids = this.hasPower = this.hasItems = true;
+        }};
+        largePhaseConveyor = new ItemBridge("large-phase-conveyor") {{ // 大型相知布物品桥
+            this.requirements(Category.distribution, with(Items.phaseFabric, 10, Items.silicon, 15, Items.lead, 20, Items.graphite, 20,MoreFactoriesItems.titaniumAlloy,8));
+            this.size = 2;
+            this.range = 24;
+            this.arrowPeriod = 0.9f;
+            this.arrowTimeScl = 2.75f;
+            this.hasPower = true;
+            this.pulse = true;
+            this.envEnabled |= Env.space;
+            this.consumePower(0.90f);
         }};
     }
 }
