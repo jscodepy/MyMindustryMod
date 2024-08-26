@@ -41,6 +41,7 @@ public class MoreFactoriesItems {
             this.flammability = 0.1f;
             this.radioactivity = 0;
             this.charge = 0.2f;
+            this.hardness = 4;
         }};
     }
 }

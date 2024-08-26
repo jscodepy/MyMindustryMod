@@ -15,6 +15,9 @@ import mindustry.world.blocks.power.PowerGenerator;
 import mindustry.world.blocks.production.AttributeCrafter;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.consumers.ConsumeItemFlammable;
+import mindustry.world.consumers.ConsumeItemRadioactive;
+import mindustry.world.consumers.ConsumeLiquidFilter;
+import mindustry.world.consumers.ConsumeLiquidFlammable;
 import mindustry.world.draw.*;
 import mindustry.world.meta.Env;
 
@@ -44,51 +47,39 @@ public class MoreFactoriesBlocks {
             this.outputItem = new ItemStack(Items.metaglass, 3); // 输出物品
 
             this.consumeItems(ItemStack.with(Items.lead,3,Items.sand,3)); // 消耗物品
-            this.consumeLiquid(Liquids.water,2.5f); // 消耗液体
+            this.consumeLiquid(Liquids.water,5f / 60f).boost(); // 消耗液体
+            this.consumeLiquid(Liquids.cryofluid,5f / 60f).boost();
             this.consumePower(2f); // 消耗电力
             this.requirements(Category.crafting, ItemStack.with(Items.copper, 130, Items.metaglass, 80, Items.plastanium, 35, Items.silicon, 60, Items.lead, 50));
             // 选项卡和建造所需材料/\/\
         }};
         waterAlternator = new ConsumeGenerator("water-alternator") {{ // 水电站
-            this.powerProduction = 2.5f;
+            this.powerProduction = 2.5f; // 产生电力
             this.generateEffect = Fx.generatespark;
-            this.outputsPower = true;
             this.size = 2;
-            this.health = 130;
+            this.health = 140;
             this.hasLiquids = true;
             this.ambientSound = Sounds.smelter;
             this.ambientSoundVolume = 0.06f;
             this.liquidCapacity = 10f;
+            this.drawer = new DrawMulti(new DrawDefault(), new DrawWarmupRegion(), new DrawLiquidRegion());
 
             this.consumeLiquid(Liquids.water,5f / 60f);
-            this.requirements(Category.power,ItemStack.with(Items.copper,20,Items.lead,20,Items.silicon,30,Items.metaglass,15));
+            this.requirements(Category.power,ItemStack.with(Items.copper,15,Items.lead,15,Items.silicon,18,Items.metaglass,15));
         }};
         dieselOilAlternator = new ConsumeGenerator("diesel-oil-alternator") {{ // 柴油发电机
-            this.powerProduction = 8f;
+            this.powerProduction = 10f;
             this.generateEffect = Fx.generatespark;
-            this.outputsPower = true;
             this.size = 2;
             this.health = 180;
             this.hasLiquids = true;
             this.ambientSound = Sounds.smelter;
             this.ambientSoundVolume = 0.08f;
-            this.liquidCapacity = 20f;
+            this.liquidCapacity = 24f;
+            this.drawer = new DrawMulti(new DrawDefault(), new DrawWarmupRegion(), new DrawLiquidRegion());
 
-            this.consumeLiquid(MoreFactoriesLiquids.dieselOil,20f / 60f);
-            this.requirements(Category.power,ItemStack.with(Items.copper,45,Items.lead,45,Items.silicon,30,Items.metaglass,40));
-            /*
-            this.consumeLiquid(MoreFactoriesLiquids.dieselOil,1.5f);
-            this.powerProduction = 8f;
-            this.generateEffect = Fx.generatespark;
-            this.size = 2;
-            this.outputsPower = true;
-            this.hasLiquids = true;
-            this.health = 180;
-            this.requirements(Category.power,ItemStack.with(Items.copper,45,Items.lead,45,Items.silicon,30,Items.metaglass,40));
-            this.ambientSound = Sounds.smelter;
-            this.ambientSoundVolume = 0.08f;
-            this.liquidCapacity = 20f;
-            */
+            this.consumeLiquid(MoreFactoriesLiquids.dieselOil,12f / 60f);
+            this.requirements(Category.power,ItemStack.with(Items.copper,20,Items.lead,15,Items.silicon,18,Items.metaglass,13));
         }};
         dieselOilCrafter = new GenericCrafter("diesel-oil-crafter") {{ // 柴油混合机
             this.size = 2;
@@ -96,12 +87,14 @@ public class MoreFactoriesBlocks {
             this.solid = true;
             this.rotate = false;
             this.outputsLiquid = true;
-            this.liquidCapacity = 24f;
+            this.liquidCapacity = 20f;
             this.craftTime = 130;
             this.envEnabled = Env.any;
             this.drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(Liquids.oil), new DrawLiquidTile(MoreFactoriesLiquids.dieselOil){{drawLiquidLight = true;}}, new DrawDefault());
-            this.outputLiquid = new LiquidStack(MoreFactoriesLiquids.dieselOil,12f / 60f);
-            this.hasLiquids = this.hasPower = this.hasItems = true;
+            this.outputLiquid = new LiquidStack(MoreFactoriesLiquids.dieselOil,8f / 60f);
+            this.hasLiquids = true;
+            this.hasPower = true;
+            this.hasItems = true;
             this.lightLiquid = MoreFactoriesLiquids.dieselOil;
 
             this.consumeItem(Items.sporePod,2);
@@ -119,8 +112,7 @@ public class MoreFactoriesBlocks {
             this.envEnabled |= Env.space;
 
             this.consumePower(0.90f);
-            this.requirements(Category.distribution, with(Items.phaseFabric, 10, Items.silicon, 15, Items.lead, 20, Items.graphite, 20,MoreFactoriesItems.titaniumAlloy,8));
-
+            this.requirements(Category.distribution, ItemStack.with(Items.phaseFabric, 10, Items.silicon, 15, Items.lead, 20, Items.graphite, 20,MoreFactoriesItems.titaniumAlloy,8));
         }};
     }
 }

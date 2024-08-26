@@ -27,7 +27,7 @@ public class MoreFactoriesLiquids {
             this.temperature = 0.7f;
             this.heatCapacity = 0.1f;
             this.viscosity = 0.6f;
-            this.explosiveness = 0.4f;
+            this.explosiveness = 0.6f;
             this.effect = StatusEffects.tarred;
         }};
         poisonAgent = new Liquid("poison-agent") {{
