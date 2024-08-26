@@ -31,11 +31,7 @@ public class MoreFactoriesBlocks {
     public MoreFactoriesBlocks() {}
     public static void load() {
         largeKiln = new GenericCrafter("large-kiln") {{ // 大型窑炉
-            this.consumeItems(ItemStack.with(Items.lead,3,Items.sand,3)); // 消耗物品
-            this.consumeLiquid(Liquids.water,2.5f); // 消耗液体
-            this.consumePower(2f); // 消耗电力
-            this.requirements(Category.crafting, ItemStack.with(Items.copper, 130, Items.metaglass, 80, Items.plastanium, 35, Items.silicon, 60, Items.lead, 50));
-            this.hasPower = true; // 是否需要用电  |  选项卡和建造所需材料/\/\
+            this.hasPower = true; // 是否需要用电
             this.hasLiquids = true; // 是否需要用液体
             this.hasItems = true; // 是否需要用物品
             this.size = 3; // 大小 3x3
@@ -46,21 +42,41 @@ public class MoreFactoriesBlocks {
             this.craftEffect = Fx.smeltsmoke; // 生产特效
             this.drawer = new DrawMulti(new DrawDefault(), new DrawFlame(Color.valueOf("ffc099")));
             this.outputItem = new ItemStack(Items.metaglass, 3); // 输出物品
+
+            this.consumeItems(ItemStack.with(Items.lead,3,Items.sand,3)); // 消耗物品
+            this.consumeLiquid(Liquids.water,2.5f); // 消耗液体
+            this.consumePower(2f); // 消耗电力
+            this.requirements(Category.crafting, ItemStack.with(Items.copper, 130, Items.metaglass, 80, Items.plastanium, 35, Items.silicon, 60, Items.lead, 50));
+            // 选项卡和建造所需材料/\/\
         }};
         waterAlternator = new ConsumeGenerator("water-alternator") {{ // 水电站
-            this.consumeLiquid(Liquids.water,0.3f);
             this.powerProduction = 2.5f;
             this.generateEffect = Fx.generatespark;
             this.outputsPower = true;
             this.size = 2;
             this.health = 130;
             this.hasLiquids = true;
-            this.requirements(Category.power,ItemStack.with(Items.copper,20,Items.lead,20,Items.silicon,30,Items.metaglass,15));
             this.ambientSound = Sounds.smelter;
             this.ambientSoundVolume = 0.06f;
             this.liquidCapacity = 10f;
+
+            this.consumeLiquid(Liquids.water,5f / 60f);
+            this.requirements(Category.power,ItemStack.with(Items.copper,20,Items.lead,20,Items.silicon,30,Items.metaglass,15));
         }};
         dieselOilAlternator = new ConsumeGenerator("diesel-oil-alternator") {{ // 柴油发电机
+            this.powerProduction = 8f;
+            this.generateEffect = Fx.generatespark;
+            this.outputsPower = true;
+            this.size = 2;
+            this.health = 180;
+            this.hasLiquids = true;
+            this.ambientSound = Sounds.smelter;
+            this.ambientSoundVolume = 0.08f;
+            this.liquidCapacity = 20f;
+
+            this.consumeLiquid(MoreFactoriesLiquids.dieselOil,20f / 60f);
+            this.requirements(Category.power,ItemStack.with(Items.copper,45,Items.lead,45,Items.silicon,30,Items.metaglass,40));
+            /*
             this.consumeLiquid(MoreFactoriesLiquids.dieselOil,1.5f);
             this.powerProduction = 8f;
             this.generateEffect = Fx.generatespark;
@@ -72,26 +88,28 @@ public class MoreFactoriesBlocks {
             this.ambientSound = Sounds.smelter;
             this.ambientSoundVolume = 0.08f;
             this.liquidCapacity = 20f;
+            */
         }};
         dieselOilCrafter = new GenericCrafter("diesel-oil-crafter") {{ // 柴油混合机
-            this.consumeItem(Items.sporePod,3);
-            this.consumeLiquid(Liquids.oil,3f);
-            this.consumePower(1.8f);
-            this.requirements(Category.crafting, ItemStack.with(Items.copper, 30, Items.lead, 30, Items.plastanium, 20, Items.silicon, 25));
             this.size = 2;
             this.health = 180;
-            this.itemCapacity = 20;
             this.solid = true;
             this.rotate = false;
             this.outputsLiquid = true;
-            this.liquidCapacity = 20f;
-            this.craftTime = 20f;
+            this.liquidCapacity = 24f;
+            this.craftTime = 130;
+            this.envEnabled = Env.any;
             this.drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(Liquids.oil), new DrawLiquidTile(MoreFactoriesLiquids.dieselOil){{drawLiquidLight = true;}}, new DrawDefault());
-            this.outputLiquid = new LiquidStack(MoreFactoriesLiquids.dieselOil,3f);
+            this.outputLiquid = new LiquidStack(MoreFactoriesLiquids.dieselOil,12f / 60f);
             this.hasLiquids = this.hasPower = this.hasItems = true;
+            this.lightLiquid = MoreFactoriesLiquids.dieselOil;
+
+            this.consumeItem(Items.sporePod,2);
+            this.consumeLiquid(Liquids.oil,12f / 60f);
+            this.consumePower(1.2f);
+            this.requirements(Category.crafting, ItemStack.with(Items.copper, 30, Items.lead, 30, Items.plastanium, 20, Items.silicon, 25));
         }};
         largePhaseConveyor = new ItemBridge("large-phase-conveyor") {{ // 大型相知布物品桥
-            this.requirements(Category.distribution, with(Items.phaseFabric, 10, Items.silicon, 15, Items.lead, 20, Items.graphite, 20,MoreFactoriesItems.titaniumAlloy,8));
             this.size = 2;
             this.range = 24;
             this.arrowPeriod = 0.9f;
@@ -99,7 +117,10 @@ public class MoreFactoriesBlocks {
             this.hasPower = true;
             this.pulse = true;
             this.envEnabled |= Env.space;
+
             this.consumePower(0.90f);
+            this.requirements(Category.distribution, with(Items.phaseFabric, 10, Items.silicon, 15, Items.lead, 20, Items.graphite, 20,MoreFactoriesItems.titaniumAlloy,8));
+
         }};
     }
 }
