@@ -16,9 +16,9 @@ public class MoreFactories extends Mod {
     }
     @Override
     public void loadContent() {
-        MoreFactoriesBlocks.load();
         MoreFactoriesItems.load();
         MoreFactoriesLiquids.load();
+        MoreFactoriesBlocks.load();
         Log.info("Loading some MoreFactories content.");
     }
 
