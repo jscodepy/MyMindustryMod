@@ -77,8 +77,8 @@ public class MoreFactoriesBlocks {
         dieselOilAlternator = new ConsumeGenerator("diesel-oil-alternator") {{ // 柴油发电机
             this.powerProduction = 10f;
             this.generateEffect = Fx.generatespark;
-            this.size = 2;
-            this.health = 180;
+            this.size = 3;
+            this.health = 230;
             this.hasLiquids = true;
             this.ambientSound = Sounds.smelter;
             this.ambientSoundVolume = 0.08f;
@@ -126,7 +126,7 @@ public class MoreFactoriesBlocks {
             this.ammo(
                     Items.graphite, new BasicBulletType(8f, 100){{
                         hitSize = 5.5f;
-                        width = 15f;
+                        width = 16f;
                         height = 21f;
                         shootEffect = Fx.shootBig;
                         ammoMultiplier = 4;
@@ -135,8 +135,8 @@ public class MoreFactoriesBlocks {
                     }},
                     Items.thorium, new BasicBulletType(9f, 120){{
                         hitSize = 6;
-                        width = 16f;
-                        height = 23f;
+                        width = 17f;
+                        height = 22f;
                         shootEffect = Fx.shootBig;
                         pierceCap = 3;
                         pierceBuilding = true;
@@ -144,8 +144,8 @@ public class MoreFactoriesBlocks {
                     }},
                     Items.pyratite, new BasicBulletType(9f, 110){{
                         hitSize = 5.2f;
-                        width = 16f;
-                        height = 21f;
+                        width = 17f;
+                        height = 22f;
                         frontColor = Pal.lightishOrange;
                         backColor = Pal.lightOrange;
                         status = StatusEffects.burning;
@@ -161,8 +161,8 @@ public class MoreFactoriesBlocks {
                     }},
                     MoreFactoriesItems.titaniumAlloy,new BasicBulletType(9f,135) {{
                         hitSize = 6;
-                        width = 16f;
-                        height = 21f;
+                        width = 17f;
+                        height = 22f;
                         pierceCap = 5;
                         pierceBuilding = true;
                         shootEffect = Fx.shootBig;
@@ -174,13 +174,13 @@ public class MoreFactoriesBlocks {
             this.recoilTime = reload * 2f;
             this.coolantMultiplier = 0.5f;
             this.ammoUseEffect = Fx.casing3;
-            this.range = 280f;
-            this.inaccuracy = 1.8f;
+            this.range = 300f;
+            this.inaccuracy = 0.8f;
             this.recoil = 3.1f;
             this.shoot = new ShootAlternate(12f);
             this.shake = 2.2f;
             this.size = 4;
-            this.shootCone = 24f;
+            this.shootCone = 28f;
             this.shootSound = Sounds.shootBig;
             this.health = 3000;
             this.scaledHealth = 290;
