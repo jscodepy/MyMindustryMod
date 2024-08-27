@@ -6,6 +6,7 @@ import mindustry.content.Items;
 import mindustry.content.Liquids;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.bullet.ContinuousLaserBulletType;
 import mindustry.entities.effect.MultiEffect;
 import mindustry.entities.pattern.ShootAlternate;
 import mindustry.gen.Sounds;
@@ -15,6 +16,7 @@ import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
+import mindustry.world.blocks.defense.turrets.LaserTurret;
 import mindustry.world.blocks.distribution.ItemBridge;
 import mindustry.world.blocks.power.ConsumeGenerator;
 import mindustry.world.blocks.power.PowerGenerator;
@@ -38,6 +40,7 @@ public class MoreFactoriesBlocks {
     //public static Block railway;
     public static Block largePhaseConveyor;
     public static Block flames;
+    public static Block disappearing;
     public MoreFactoriesBlocks() {}
     public static void load() {
         largeKiln = new GenericCrafter("large-kiln") {{ // 大型窑炉
@@ -61,7 +64,7 @@ public class MoreFactoriesBlocks {
             // 选项卡和建造所需材料/\/\
         }};
         waterAlternator = new ConsumeGenerator("water-alternator") {{ // 水电站
-            this.powerProduction = 2.5f; // 产生电力
+            this.powerProduction = 4f; // 产生电力
             this.generateEffect = Fx.generatespark;
             this.size = 2;
             this.health = 140;
@@ -75,17 +78,17 @@ public class MoreFactoriesBlocks {
             this.requirements(Category.power,ItemStack.with(Items.copper,15,Items.lead,15,Items.silicon,18,Items.metaglass,15));
         }};
         dieselOilAlternator = new ConsumeGenerator("diesel-oil-alternator") {{ // 柴油发电机
-            this.powerProduction = 10f;
+            this.powerProduction = 28f;
             this.generateEffect = Fx.generatespark;
             this.size = 3;
             this.health = 230;
             this.hasLiquids = true;
             this.ambientSound = Sounds.smelter;
             this.ambientSoundVolume = 0.08f;
-            this.liquidCapacity = 24f;
+            this.liquidCapacity = 50f;
             this.drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(MoreFactoriesLiquids.dieselOil), new DrawDefault());
 
-            this.consumeLiquid(MoreFactoriesLiquids.dieselOil,12f / 60f);
+            this.consumeLiquid(MoreFactoriesLiquids.dieselOil,25f / 60f);
             this.requirements(Category.power,ItemStack.with(Items.copper,20,Items.lead,15,Items.silicon,18,Items.metaglass,13));
         }};
         dieselOilCrafter = new GenericCrafter("diesel-oil-crafter") {{ // 柴油混合机
@@ -109,7 +112,7 @@ public class MoreFactoriesBlocks {
             this.consumePower(1.2f);
             this.requirements(Category.crafting, ItemStack.with(Items.copper, 30, Items.lead, 30, Items.plastanium, 20, Items.silicon, 25));
         }};
-        largePhaseConveyor = new ItemBridge("large-phase-conveyor") {{ // 大型相知布物品桥
+        largePhaseConveyor = new ItemBridge("large-phase-conveyor") {{ // 大型相织布物品桥
             this.size = 2;
             this.range = 24;
             this.arrowPeriod = 0.9f;
@@ -186,6 +189,36 @@ public class MoreFactoriesBlocks {
             this.scaledHealth = 290;
             this.coolant = consumeCoolant(1.1f);
             this.limitRange();
+        }};
+        disappearing = new LaserTurret("disappearing") {{
+            this.requirements(Category.turret, with(Items.copper, 1250, Items.lead, 1000, Items.graphite, 800, Items.surgeAlloy, 400, Items.silicon, 950));
+            this.shootEffect = Fx.shootBigSmoke2;
+            this.shootCone = 40f;
+            this.recoil = 5.1f;
+            this.size = 4;
+            this.shake = 2.5f;
+            this.range = 250f;
+            this.reload = 120f;
+            this.firingMoveFract = 0.5f;
+            this.shootDuration = 230f;
+            this.shootSound = Sounds.laser;
+            this.loopSound = Sounds.beam;
+            this.loopSoundVolume = 2f;
+            this.envEnabled |= Env.space;
+            this.shootType = new ContinuousLaserBulletType(78){{
+                length = 20f;
+                hitEffect = Fx.hitMeltdown;
+                hitColor = Pal.meltdownHit;
+                status = StatusEffects.melting;
+                drawSize = 100f;
+                incendChance = 1f;
+                incendSpread = 5.1f;
+                incendAmount = 1;
+                ammoMultiplier = 1f;
+            }};
+            this.scaledHealth = 250;
+            this.coolant = consumeCoolant(0.6f);
+            this.consumePower(28f);
         }};
     }
 }
