@@ -220,6 +220,8 @@ public class MoreFactoriesBlocks {
                 this.drawSize = 70f;
                 this.damage = 2500;
                 this.speed = range;
+                this.splashDamage = 40f;
+                this.splashDamageRadius = 30f;
                 this.status = StatusEffects.melting;
                 this.ammoMultiplier = 1f;
             }});
