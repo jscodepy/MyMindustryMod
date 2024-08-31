@@ -43,7 +43,6 @@ public class MoreFactoriesBlocks {
     public static Block plastaniumConveyor;
     public static Block flames;
     public static Block disappearing;
-    public static Block deadSilence;
     public MoreFactoriesBlocks() {}
     public static void load() {
         largeKiln = new GenericCrafter("large-kiln") {{ // 大型窑炉
@@ -226,9 +225,8 @@ public class MoreFactoriesBlocks {
                 this.ammoMultiplier = 1f;
             }};
             this.scaledHealth = 250;
-            this.coolant.optional = true;
-            this.coolantMultiplier = 2.2f;
             this.coolant = consumeCoolant(0.6f);
+            this.coolant.optional = false;
             this.itemCapacity = 20;
             this.minWarmup = 5.2f;
 
