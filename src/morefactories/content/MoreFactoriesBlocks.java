@@ -9,6 +9,7 @@ import mindustry.entities.UnitSorts;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.ContinuousLaserBulletType;
 import mindustry.entities.bullet.LaserBulletType;
+import mindustry.entities.bullet.PointBulletType;
 import mindustry.entities.effect.MultiEffect;
 import mindustry.entities.pattern.ShootAlternate;
 import mindustry.gen.Sounds;
@@ -200,13 +201,14 @@ public class MoreFactoriesBlocks {
             this.coolant = consumeCoolant(1.1f);
             this.limitRange();
         }};
-        disappearing = new PowerTurret("disappearing") {{ // 消逝
+        disappearing = new ItemTurret("disappearing") {{ // 消逝
             this.requirements(Category.turret, with(Items.copper, 2500, Items.lead, 1900, Items.graphite, 2800, Items.surgeAlloy, 2400, Items.silicon, 1950, MoreFactoriesItems.gold, 1000, MoreFactoriesItems.titaniumAlloy, 500));
             this.range = 320f;
             this.health = 4700;
             this.targetAir = this.targetGround = true;
-            this.shootType = new ContinuousLaserBulletType(2000) {{
-                this.length = 330f;
+            this.ammo(MoreFactoriesItems.titaniumAlloy,new PointBulletType() {{
+                this.trailSpacing = 20f;
+                this.hitShake = 7.1f;
                 this.chargeEffect = Fx.teleport;
                 this.hitEffect = Fx.dynamicSpikes;
                 this.hitColor = Pal.meltdownHit;
@@ -215,32 +217,31 @@ public class MoreFactoriesBlocks {
                 this.smokeEffect = Fx.smokeCloud;
                 this.trailEffect = Fx.railTrail;
                 this.buildingDamageMultiplier = 0.3f;
-                this.drawSize = 65f;
-                this.speed = range + 20f;
-                this.incendChance = 1f;
-                this.incendSpread = 5.1f;
-                this.incendAmount = 1;
+                this.drawSize = 70f;
+                this.damage = 2500;
+                this.speed = range;
+                this.status = StatusEffects.melting;
                 this.ammoMultiplier = 1f;
-            }};
+            }});
             this.maxAmmo = 40;
-            this.ammoPerShot = 5;
-            this.rotateSpeed = 1.8f;
-            reload = 230f;
-            ammoUseEffect = Fx.casing3Double;
-            recoil = 7f;
-            recoilTime = recoil * 2f;
-            cooldownTime = reload;
-            shake = 6.2f;
-            size = 4;
-            shootCone = 2f;
-            shootSound = Sounds.railgun;
-            unitSort = UnitSorts.strongest;
-            envEnabled |= Env.space;
+            this.ammoPerShot = 8;
+            this.rotateSpeed = 0.8f;
+            this.reload = 230f;
+            this.ammoUseEffect = Fx.casing3Double;
+            this.recoil = 7f;
+            this.recoilTime = recoil * 2f;
+            this.cooldownTime = reload;
+            this.shake = 6.2f;
+            this.size = 4;
+            this.shootCone = 2f;
+            this.shootSound = Sounds.railgun;
+            this.unitSort = UnitSorts.strongest;
+            this.envEnabled |= Env.space;
             this.shootEffect = Fx.shootBigSmoke2;
 
-            coolantMultiplier = 0.4f;
-            scaledHealth = 280;
-            coolant = consumeCoolant(1f);
+            this.coolantMultiplier = 0.38f;
+            this.scaledHealth = 280;
+            this.coolant = consumeCoolant(1.1f);
 
             this.consumePower(28f);
         }};
