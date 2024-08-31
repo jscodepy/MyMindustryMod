@@ -114,7 +114,7 @@ public class MoreFactoriesBlocks {
             this.consumePower(1.2f);
             this.requirements(Category.crafting, ItemStack.with(Items.copper, 30, Items.lead, 30, Items.plastanium, 20, Items.silicon, 25));
         }};
-        plastaniumConveyor = new ItemBridge("plastanium-conveyor") {{ // 大型相织布物品桥
+        plastaniumConveyor = new ItemBridge("plastanium-conveyor") {{ // 塑钢传送带桥
             this.size = 1;
             this.range = 20;
             this.arrowPeriod = 0.9f;
@@ -197,7 +197,6 @@ public class MoreFactoriesBlocks {
             this.requirements(Category.turret, with(Items.copper, 2500, Items.lead, 1900, Items.graphite, 2800, Items.surgeAlloy, 2400, Items.silicon, 1950,MoreFactoriesItems.gold,1000,MoreFactoriesItems.titaniumAlloy ,500));
             this.shootEffect = Fx.shootBigSmoke2;
             this.shootCone = 40f;
-            this.shoot.firstShotDelay = 40f;
             this.recoil = 6f;
             this.recoilTime = 3.5f;
             this.size = 4;
