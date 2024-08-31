@@ -202,24 +202,21 @@ public class MoreFactoriesBlocks {
             this.limitRange();
         }};
         disappearing = new ItemTurret("disappearing") {{ // 消逝
-            this.requirements(Category.turret, with(Items.copper, 2500, Items.lead, 1900, Items.graphite, 2800, Items.surgeAlloy, 2400, Items.silicon, 1950, MoreFactoriesItems.gold, 1000, MoreFactoriesItems.titaniumAlloy, 500));
-            this.range = 320f;
+            float brange = this.range = 320f;
             this.health = 4700;
             this.targetAir = this.targetGround = true;
             this.ammo(MoreFactoriesItems.titaniumAlloy,new PointBulletType() {{
-                this.trailSpacing = 20f;
-                this.hitShake = 7.1f;
                 this.chargeEffect = Fx.teleport;
                 this.hitEffect = Fx.dynamicSpikes;
-                this.hitColor = Pal.meltdownHit;
                 this.shootEffect = Fx.instShoot;
                 this.despawnEffect = Fx.dynamicSpikes;
                 this.smokeEffect = Fx.smokeCloud;
-                this.trailEffect = Fx.railTrail;
-                this.buildingDamageMultiplier = 0.3f;
-                this.drawSize = 70f;
+                this.trailEffect = Fx.instTrail;
+                this.trailSpacing = 20f;
+                this.hitShake = 7.1f;
+                this.buildingDamageMultiplier = 0.45f;
                 this.damage = 2500;
-                this.speed = range;
+                this.speed = brange;
                 this.splashDamage = 40f;
                 this.splashDamageRadius = 30f;
                 this.status = StatusEffects.melting;
@@ -239,13 +236,13 @@ public class MoreFactoriesBlocks {
             this.shootSound = Sounds.railgun;
             this.unitSort = UnitSorts.strongest;
             this.envEnabled |= Env.space;
-            this.shootEffect = Fx.shootBigSmoke2;
 
             this.coolantMultiplier = 0.38f;
             this.scaledHealth = 280;
-            this.coolant = consumeCoolant(1.1f);
+            this.coolant = consumeCoolant(1f);
 
             this.consumePower(28f);
+            this.requirements(Category.turret, with(Items.copper, 2500, Items.lead, 1900, Items.graphite, 2800, Items.surgeAlloy, 2400, Items.silicon, 1950, MoreFactoriesItems.gold, 1000, MoreFactoriesItems.titaniumAlloy, 500));
         }};
     }
 }
