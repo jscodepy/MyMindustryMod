@@ -7,6 +7,7 @@ import mindustry.content.Liquids;
 import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.ContinuousLaserBulletType;
+import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.effect.MultiEffect;
 import mindustry.entities.pattern.ShootAlternate;
 import mindustry.gen.Sounds;
@@ -17,6 +18,7 @@ import mindustry.type.LiquidStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.defense.turrets.LaserTurret;
+import mindustry.world.blocks.defense.turrets.PowerTurret;
 import mindustry.world.blocks.distribution.ItemBridge;
 import mindustry.world.blocks.power.ConsumeGenerator;
 import mindustry.world.blocks.power.PowerGenerator;
@@ -38,9 +40,10 @@ public class MoreFactoriesBlocks {
     public static Block dieselOilAlternator;
     public static Block dieselOilCrafter;
     //public static Block railway;
-    public static Block largePhaseConveyor;
+    public static Block plastaniumConveyor;
     public static Block flames;
     public static Block disappearing;
+    public static Block deadSilence;
     public MoreFactoriesBlocks() {}
     public static void load() {
         largeKiln = new GenericCrafter("large-kiln") {{ // 大型窑炉
@@ -112,19 +115,20 @@ public class MoreFactoriesBlocks {
             this.consumePower(1.2f);
             this.requirements(Category.crafting, ItemStack.with(Items.copper, 30, Items.lead, 30, Items.plastanium, 20, Items.silicon, 25));
         }};
-        largePhaseConveyor = new ItemBridge("large-phase-conveyor") {{ // 大型相织布物品桥
-            this.size = 2;
-            this.range = 24;
+        plastaniumConveyor = new ItemBridge("plastanium-conveyor") {{ // 大型相织布物品桥
+            this.size = 1;
+            this.range = 20;
             this.arrowPeriod = 0.9f;
             this.arrowTimeScl = 2.75f;
             this.hasPower = true;
             this.pulse = true;
             this.envEnabled |= Env.space;
 
-            this.consumePower(0.90f);
-            this.requirements(Category.distribution, ItemStack.with(Items.phaseFabric, 10, Items.silicon, 15, Items.lead, 20, Items.graphite, 20,MoreFactoriesItems.titaniumAlloy,8));
+            this.consumePower(0.91f);
+            this.requirements(Category.distribution, ItemStack.with(Items.plastanium, 6, Items.silicon, 5, Items.lead, 8, Items.graphite, 5,MoreFactoriesItems.titaniumAlloy,8));
         }};
-        flames = new ItemTurret("flames") {{
+        // 下面是炮塔
+        flames = new ItemTurret("flames") {{ // 火舌
             this.requirements(Category.turret, with(Items.copper, 1200, Items.graphite, 1300, Items.surgeAlloy, 800, Items.plastanium, 580, Items.thorium, 1000,MoreFactoriesItems.gold,320,MoreFactoriesItems.iron,700));
             this.ammo(
                     Items.graphite, new BasicBulletType(8f, 100){{
@@ -190,35 +194,47 @@ public class MoreFactoriesBlocks {
             this.coolant = consumeCoolant(1.1f);
             this.limitRange();
         }};
-        disappearing = new LaserTurret("disappearing") {{
-            this.requirements(Category.turret, with(Items.copper, 1250, Items.lead, 1000, Items.graphite, 800, Items.surgeAlloy, 400, Items.silicon, 950));
+        disappearing = new PowerTurret("disappearing") {{ // 消逝
+            this.requirements(Category.turret, with(Items.copper, 2500, Items.lead, 1900, Items.graphite, 2800, Items.surgeAlloy, 2400, Items.silicon, 1950,MoreFactoriesItems.gold,1000,MoreFactoriesItems.titaniumAlloy ,500));
             this.shootEffect = Fx.shootBigSmoke2;
             this.shootCone = 40f;
-            this.recoil = 5.1f;
+            this.shoot.firstShotDelay = 40f;
+            this.recoil = 6f;
+            this.recoilTime = 3.5f;
             this.size = 4;
             this.shake = 2.5f;
-            this.range = 250f;
-            this.reload = 120f;
-            this.firingMoveFract = 0.5f;
-            this.shootDuration = 230f;
-            this.shootSound = Sounds.laser;
+            this.range = 320f;
+            this.reload = 90f;
+            this.health = 4700;
+            this.shootSound = Sounds.laserbig;
             this.loopSound = Sounds.beam;
             this.loopSoundVolume = 2f;
             this.envEnabled |= Env.space;
-            this.shootType = new ContinuousLaserBulletType(78){{
-                length = 20f;
-                hitEffect = Fx.hitMeltdown;
-                hitColor = Pal.meltdownHit;
-                status = StatusEffects.melting;
-                drawSize = 100f;
-                incendChance = 1f;
-                incendSpread = 5.1f;
-                incendAmount = 1;
-                ammoMultiplier = 1f;
+
+            this.ammoPerShot = 5;
+            this.targetAir = this.targetGround = true;
+            this.shootType = new ContinuousLaserBulletType(2000){{
+                this.chargeEffect = new MultiEffect(Fx.teleport);
+                this.length = 330f;
+                this.hitEffect = Fx.dynamicSpikes;
+                this.hitColor = Pal.meltdownHit;
+                this.status = StatusEffects.melting;
+                this.drawSize = 65f;
+                this.incendChance = 1f;
+                this.incendSpread = 5.1f;
+                this.incendAmount = 1;
+                this.ammoMultiplier = 1f;
             }};
             this.scaledHealth = 250;
+            this.coolant.optional = true;
+            this.coolantMultiplier = 2.2f;
             this.coolant = consumeCoolant(0.6f);
+            this.itemCapacity = 20;
+            this.minWarmup = 5.2f;
+
+            this.consumeItem(MoreFactoriesItems.titaniumAlloy,5);
             this.consumePower(28f);
         }};
+
     }
 }
